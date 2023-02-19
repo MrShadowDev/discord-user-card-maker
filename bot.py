@@ -18,33 +18,33 @@ def generate_profile_card(user):
     avatar_url = user.avatar_url_as(format="png")
     avatar_data = BytesIO(avatar_url.read())
     avatar_image = tk.PhotoImage(data=avatar_data.getvalue())
-    
+
     # Add the user's avatar to the window
     avatar_label = tk.Label(window, image=avatar_image)
     avatar_label.pack(side="left", padx=10, pady=10)
-    
+
     # Add the user's name and discriminator to the window
     name_label = tk.Label(window, text=f"{user.name}#{user.discriminator}", fg="white", bg="black", font=("Arial", 20))
     name_label.pack(padx=10, pady=10)
-    
+
     # Add the user's ID and account creation date to the window
     id_label = tk.Label(window, text=f"ID: {user.id}", fg="white", bg="black", font=("Arial", 16))
     id_label.pack(padx=10, pady=10)
     created_at_label = tk.Label(window, text=f"Created At: {user.created_at}", fg="white", bg="black", font=("Arial", 16))
     created_at_label.pack(padx=10, pady=10)
-    
+
     # Add the user's badges to the window
     badge_text = "Badges: "
     for badge in user.public_flags.all():
-        badge_text += str(badge) + " "
+        badge_text += f"{str(badge)} "
     badge_label = tk.Label(window, text=badge_text, fg="white", bg="black", font=("Arial", 16))
     badge_label.pack(padx=10, pady=10)
-    
+
     # Add the user's status to the window
     status_text = f"Status: {user.status}"
     status_label = tk.Label(window, text=status_text, fg="white", bg="black", font=("Arial", 16))
     status_label.pack(padx=10, pady=10)
-    
+
     # Run the Tkinter window
     window.mainloop()
 
